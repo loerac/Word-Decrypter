@@ -29,8 +29,25 @@ int main(int argc, char* argv[]) {
         if(strcmp(argv[i], "-e")==0)  { en = argv[++i]; }
         else if(strcmp(argv[i], "-i")==0) { in = argv[++i]; }
         else if(strcmp(argv[i], "-o")==0) { out = argv[++i]; }
+        else if(strcmp(argv[i], "-h")==0 || strcmp(argv[i], "--help")==0) {
+            cout << "\nUsage [-e : string] [optional -i : string] [optional -o : string]\n\n";
+            cout << "Required commands:\n";
+            cout << "   -e,         : Encrypted word\n";
+            cout << "\nOptional commands:\n";
+            cout << "   -i,         : Known letters in the encrypted word\n";
+            cout << "   -o,         : Known letters that are NOT in the encrypted word\n";
+            cout << "   -h, --help  : Display passable commands\n";
+            return 0;
+        }
         else { cout << "Error: unknown command : [ " << argv[i] << " ]\n"; return 2; }
     }
+
+    if(en=="") {
+        cout << "\nError: no encrypted word given\n";
+        cout << "Enter encrypted word >> ";
+        cin >> en;
+    }
+    cout << en << " " << in << " " << out << endl;
     
     // Check if there are common letters
     if(in != "" && out != "") {
